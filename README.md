@@ -1,2 +1,2 @@
-# real-time-grid
-Laravel, Vue.js, Vuex y Socket.io
+# Refresh real time
+Laravel, Vue.js y pusher
