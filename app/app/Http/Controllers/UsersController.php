@@ -25,4 +25,9 @@ class UsersController extends Controller
     {
         return \Response::json(User::orderBy('id', 'desc')->get(), 200);        
     }
+
+    public function newUser()
+    {
+        return view('register');
+    }
 }
