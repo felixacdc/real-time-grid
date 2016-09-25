@@ -62,7 +62,7 @@ $(document).ready(function() {
             },
             fnShowNow: function() {
             	this.showNow = [];
-            	for (var i = this.showEnd; i >= this.showBegin; i--) {
+            	for (var i = this.showBegin; i <= this.showEnd; i++) {
             		if ( this.displayUsers[i] != undefined )
             			this.showNow.push(this.displayUsers[i]);
             	}
