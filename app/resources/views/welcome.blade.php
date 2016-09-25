@@ -3,10 +3,12 @@
     <head>
         <title>Real Time</title>
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-        <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url('css/me.css') }}" rel="stylesheet" type="text/css">
         <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
     </head>
     <body>
+        @section('listado', 'active')
+        @include('menu')
         <div class="container">
             <div class="content">
                 <div class="row">
@@ -43,7 +45,6 @@
         </div>
 
         <script src="{{ asset('js/jquery.min.js') }}"></script>
-        <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('js/vue.js') }}"></script>
         <script src="{{ asset('js/vue-resource.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>

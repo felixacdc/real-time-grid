@@ -4,13 +4,27 @@
   <meta charset="UTF-8">
   <title>Register</title>
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ url('css/me.css') }}" rel="stylesheet" type="text/css">
 </head>
 <body>
+  @section('registro', 'active')
+  @include('menu')
   <div class="container">
     <div class="content">
+      @if( Session::has('success') )
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <div class="alert alert-dismissible alert-success">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <strong>Muy bien!</strong> {{ Session::get('success') }}
+            </div>
+          </div>
+        </div>
+      @endif
       <div class="row">
         <div class="col-md-3"></div>
-        <div class="col-md-6 well bs-component" style="margin-top: 80px;">
+        <div class="col-md-6 well bs-component">
           <form class="form-horizontal" action="/save" method="POST">
             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <fieldset>

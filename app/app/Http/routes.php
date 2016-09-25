@@ -25,5 +25,5 @@ Route::post('save', function(Request $request) {
 	$user->save();
 	event(new App\Events\UserRegistered($user));
 
-	return redirect('/new_user');
+	return redirect('/new_user')->with('success', 'El usuario fue registrado exitosamente.');
 });
