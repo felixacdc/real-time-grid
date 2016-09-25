@@ -16,7 +16,7 @@
                         <div class="well">
                             <input type="text" name="search" class="form-control" placeholder="Buscar usuario..." v-model="search" @keyup="searchUsers">
                         </div>
-                        <pre>Datos totales: @{{ totalRegisters }}</pre>
+                        <pre>Datos totales: @{{ totalRegisters }} - Temporales: @{{ temporalRegisters }}</pre>
                         <table class="table table-striped table-hover" id="example">
                             <thead>
                                 <tr class="info">
@@ -26,13 +26,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(index, user) in displayUsers">
-                                    <td>@{{ index + 1 }}</td>
+                                <tr v-for="(index, user) in showNow">
+                                    <td>@{{ index + 1 + showBegin }}</td>
                                     <td>@{{ user.email }}</td>
                                     <td>@{{ user.name }}</td>
                                 </tr>
                             </tbody>
-                        </table> 
+                        </table>
+                        <div class="btn-group btn-group-justified">
+                            <a href="#" class="btn btn-default" @click="previous($event)">Anterior</a>
+                            <a href="#" class="btn btn-default" @click="next($event)">Siguiente</a>
+                        </div> 
                     </div>
                 </div>
             </div>

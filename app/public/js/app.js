@@ -8,15 +8,21 @@ $(document).ready(function() {
             users: {},
             pusher: [],
             pusherChannel: [],
-            displayUsers: [],
+            displayUsers: {},
             totalRegisters: 0,
+            temporalRegisters: 0,
+            showBegin: 0,
+            showEnd: 9,
+            showNow: [],
             search: ''
         },
 	    ready: function () {
 	    	this.$http.get('/users').then((req) => {
 	            this.users = req.data;
 	            this.totalRegisters = this.users.length;
+	            this.temporalRegisters = this.totalRegisters;
 	            this.displayUsers = this.users;
+	            this.fnShowNow();
 	        }, (req) => {
 	            alert("error");
 	        });
@@ -44,13 +50,38 @@ $(document).ready(function() {
                     var email = obj.email.toLowerCase();
                     var stringSearch = _this.search.toLowerCase();
 
-                    if (name.search(stringSearch) >= 0)
+                    if (name.search(stringSearch) >= 0 || email.search(stringSearch) >= 0)
                         return obj;
-                    else if(email.search(stringSearch) >= 0)
-                    	return obj;
                 });
 
                 this.displayUsers = displayMiddleware;
+                this.temporalRegisters = this.displayUsers.length;
+                this.showBegin = 0;
+                this.showEnd = 9;
+                this.fnShowNow();
+            },
+            fnShowNow: function() {
+            	this.showNow = [];
+            	for (var i = this.showEnd; i >= this.showBegin; i--) {
+            		if ( this.displayUsers[i] != undefined )
+            			this.showNow.push(this.displayUsers[i]);
+            	}
+            },
+            previous: function(event) {
+            	event.preventDefault();
+            	if ( this.showBegin > 0) {
+            		this.showBegin -= 10;
+            		this.showEnd -= 10;
+            		this.fnShowNow()
+            	}
+            },
+            next: function(event) {
+            	event.preventDefault()
+            	if ( (this.temporalRegisters - (this.showBegin + 10) ) > 0) {
+            		this.showBegin += 10;
+            		this.showEnd += 10;
+            		this.fnShowNow()
+            	}
             }
 	    }
 	});
